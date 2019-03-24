@@ -1,9 +1,6 @@
 import itertools
 DEBUG = False
-if DEBUG:
-    debug_print = print
-else:
-    def debug_print(*args): pass
+debug_print = print if DEBUG else lambda *x: None
 
 def load_data():
     return [
