@@ -4,13 +4,10 @@ debug_print = print if DEBUG else lambda *x: None
 
 def load_data():
     return [
-        {1, 2, 3, 4},
-        {1, 2, 4},
-        {1, 2},
-        {2, 3, 4},
-        {2, 3},
-        {3, 4},
-        {2, 4}
+        {1, 3, 4},
+        {2, 3, 5},
+        {1, 2, 3, 5},
+        {2, 5}
     ]
 
 DATA = load_data()
@@ -25,7 +22,7 @@ def confidence(rule):
     #       rule[1] = set of items
     return support_count(rule[0] | rule[1]) / support_count(rule[1])
 
-def apriori(data, min_sup=3, min_conf=0.70):
+def apriori(data, min_sup, min_conf):
 
     print('Min. Support =', min_sup, 'Min. Confidence =', min_conf)
 
@@ -74,4 +71,21 @@ def apriori(data, min_sup=3, min_conf=0.70):
         print('Confidence:', '{:5.2f}'.format( confidence(rule) ))
 
 if __name__ == '__main__':
-    apriori(data=DATA, min_sup=3, min_conf=0.70)
+    apriori(data=DATA, min_sup=2, min_conf=0.70)
+
+'''
+Output:
+Min. Support = 2 Min. Confidence = 0.7
+Final candidates:
+(2, 3, 5) Support Count: 2
+Association rules:
+{2} -> {3, 5} Confidence:  1.00
+{3} -> {2, 5} Confidence:  0.67
+{5} -> {2, 3} Confidence:  1.00
+{2, 3} -> {5} Confidence:  0.67
+{2, 5} -> {3} Confidence:  0.67
+{3, 5} -> {2} Confidence:  0.67
+Chosen rules:
+{2} -> {3, 5} Confidence:  1.00
+{5} -> {2, 3} Confidence:  1.00
+'''
