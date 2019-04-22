@@ -14,25 +14,12 @@ mean_y - b1 * mean_x
 
 X = [69, 63, 66, 64, 67, 64, 70, 66, 68, 67, 65, 71]
 Y = [70, 65, 68, 65, 69, 66, 68, 65, 71, 67, 64, 72]
-sumX = sum(X)
-sumY = sum(Y)
+
 meanX = sum(X)/len(X)
 meanY = sum(Y)/len(Y)
 
-numer = \
-    sum(
-        map(
-            lambda xy: (xy[0]-meanX)*(xy[1]-meanY),
-            zip(X, Y)
-        )
-    )
-denom = \
-    sum(
-        map(
-            lambda  x: (x-meanX)**2, 
-            X
-        )
-    )
+numer = sum(map(lambda xy: (xy[0]-meanX)*(xy[1]-meanY),zip(X, Y)))
+denom = sum(map(lambda  x: (x-meanX)**2, X))
 
 b1 = numer / denom
 b0 = meanY - b1 * meanX
