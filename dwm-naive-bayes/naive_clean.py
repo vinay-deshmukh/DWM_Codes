@@ -28,9 +28,9 @@ def predict(data, Color, Type, Origin):
         lorigin = data['Origin']
 
         poutput = lstolen.count(output) / len(lstolen)
-        pcolor  = get_intersect_probability(lcolor, lstolen, Color, output)   / poutput
-        ptype   = get_intersect_probability(ltype, lstolen, Type, output)     / poutput
-        porigin = get_intersect_probability(lorigin, lstolen, Origin, output) / poutput
+        pcolor  = get_intersect_probability(lcolor, lstolen, Color, output)
+        ptype   = get_intersect_probability(ltype, lstolen, Type, output)
+        porigin = get_intersect_probability(lorigin, lstolen, Origin, output)
         pfinal = pcolor * ptype * porigin * poutput
         ans[output] = pfinal
 
@@ -53,7 +53,7 @@ def get_intersect_probability(a1, a2, v1, v2):
     #     if x == v1 and y == v2:
     #         c += 1
     # return c / len(a1)
-    return sum(1 for x,y in zip(a1,a2) if x == v1 and y == v2 ) / len(a1)
+    return sum(1 for x,y in zip(a1,a2) if x == v1 and y == v2 ) / a2.count(v2)
 
 if __name__ == '__main__':
     c_file = 'cars.csv'
