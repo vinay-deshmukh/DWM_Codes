@@ -20,7 +20,7 @@ def confidence(rule):
     # rule: 2-tuple
     # where rule[0] = set of items
     #       rule[1] = set of items
-    return support_count(rule[0] | rule[1]) / support_count(rule[1])
+    return support_count(rule[0] | rule[1]) / support_count(rule[0])
 
 def apriori(data, min_sup, min_conf):
 
@@ -79,13 +79,13 @@ Min. Support = 2 Min. Confidence = 0.7
 Final candidates:
 (2, 3, 5) Support Count: 2
 Association rules:
-{2} -> {3, 5} Confidence:  1.00
+{2} -> {3, 5} Confidence:  0.67
 {3} -> {2, 5} Confidence:  0.67
-{5} -> {2, 3} Confidence:  1.00
-{2, 3} -> {5} Confidence:  0.67
+{5} -> {2, 3} Confidence:  0.67
+{2, 3} -> {5} Confidence:  1.00
 {2, 5} -> {3} Confidence:  0.67
-{3, 5} -> {2} Confidence:  0.67
+{3, 5} -> {2} Confidence:  1.00
 Chosen rules:
-{2} -> {3, 5} Confidence:  1.00
-{5} -> {2, 3} Confidence:  1.00
+{2, 3} -> {5} Confidence:  1.00
+{3, 5} -> {2} Confidence:  1.00
 '''
